@@ -15,37 +15,20 @@ import { Component } from '@angular/core';
     selector: 'my-app',
     template: `
         <div>
-            <p>
-                {{name}}
-                <br>
-                {{item.id}}
-                <br>
-                {{item.name}}
-                <br>
-                {{item.nation}}
-                <br>
-                <input value="{{item.name}}" placeholder="name"/>
-                <br>
-                <input [(ngModel)]="item.name" placeholder="name">
-            </p>
+            <h2>내 아이템 목록</h2>
+            <ul class="itemArray">
+                <li *ngFor="let item of itemArray">
+                    <p>{{item.id}} {{item.name}} {{item.nation}}</p>
+                </li>
+            </ul>
         </div>
         `
-        /**
-         * [(ngModel)]="변수명" 으로 할 경우 two-way binding 됨
-         * 
-         * 이 경우 뷰단 인풋값을 바꾸면 그 즉시 클래스의 값도 변경
-         */
 })
 
 export class AppComponent {
-    name = 'u4bi';
-    item : Item = {
-        id : 1,
-        name : '몬스터볼',
-        nation : 'USA'
-    };
+    itemArray = ITEM_ARRAY;
     /**
-     * 클래스 안에 name과 item 변수를 선언해줌.
+     *  변수 하나 선언후 위 배열 assign함
      */
 }
 /**
@@ -64,3 +47,13 @@ export class Item {
      * TypeScript에서는 JavaScript에서 관리하지 않는 Type을 관리함
      */
 }
+
+const ITEM_ARRAY: Item[] = [
+  { id: 11, name: '초급 몬스터볼', nation: 'USA'},
+  { id: 12, name: '중급 몬스터볼', nation: 'USA'},
+  { id: 13, name: '고급 몬스터볼', nation: 'USA'}
+];
+
+/**
+ * TypeScript에서도 기본적인 JavaScript 문법은 동작함
+ */
