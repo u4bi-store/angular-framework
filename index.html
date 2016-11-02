@@ -1,21 +1,35 @@
 <html>
   <head>
-    <title>angular2.0_workspace</title>
+    <title>angular2.0_workspace dev2</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
 
     <script src="node_modules/core-js/client/shim.min.js"></script>
+    <!--core-js : ES2015(ECMAScript6)로 확장하기 위한 라이브러리-->
     <script src="node_modules/zone.js/dist/zone.js"></script>
+    <!-- zone.js : TC39(ECMAScript6)로 가기 전에 Zone에 관한 스펙을
+    구현해놓은 라이브러리-->
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <!--Reflect.js : Angular와 TypeScript Compiler 사이에 denpendency를
+    공유하기 위한 라이브러리-->
     <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- system.src.js : ES6 모듈 스펙에 호환되는 동적 모듈 로더-->
 
     <script src="systemjs.config.js"></script>
+    <!--systemjs.config.js : 위에서 작성한 SystemJS Config 파일-->
+
     <script>
       System.import('app').catch(function(err){ console.error(err); });
+      /**
+       * SystemJS의 app을 로딩하고 예외 발생시 console.error로 error 출력
+       */
     </script>
   </head>
   <body>
     <my-app>Loading...</my-app>
+    <!--app.component.ts에서 선언한 component의 selector인
+    my-app을 이용한 태그
+    해당 태그에 component가 들어감-->
   </body>
 </html>
