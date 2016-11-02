@@ -10,6 +10,10 @@ import { AppComponent }  from './app.component';
 /**
  * app.component내의 AppComponent를 임포트함.
 */
+import { ItemDetailComponent } from './item-detail.component';
+/**
+ * 컴포넌트 분리로 인해 추가
+ */
 @NgModule({
   /**
    * NgModule단에 FormsModule을 추가함 
@@ -19,7 +23,9 @@ import { AppComponent }  from './app.component';
     FormsModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    ItemDetailComponent
+    /* 추가*/
   ],
   bootstrap: [
     AppComponent

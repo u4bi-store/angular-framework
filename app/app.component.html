@@ -1,0 +1,12 @@
+<div>
+    <h2>내 아이템 목록</h2>
+    <ul class="itemArray">
+        <li *ngFor="let item of itemArray" (click)="onSelect(item)">
+            <p [class.choice]="item === putItem" >{{item.id}} {{item.name}} {{item.nation}}</p>
+        </li>
+    </ul>
+</div>
+<my-item-detail [item]="putItem"></my-item-detail>
+<!--Input변수로 지정한 item에 putItem을 Input값으로 넣어줌
+    문법은 [하위 Component Input 변수]="component 변수 값"
+-->
