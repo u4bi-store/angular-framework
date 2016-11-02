@@ -15,15 +15,38 @@ import { Component } from '@angular/core';
     selector: 'my-app',
     template: `
         <div>
-        <h1>angular2.0_workspace dev2</h1>
-        <h2>angular2.0 test u4bi</h2>
-        <a href="https://github.com/u4bi/Angular2.0_workspace">깃허브드 앵귤러2 워크스페이스 브런치 dev2</a>
+            <p>
+                {{name}}
+                <br>
+                {{item.id}}
+                <br>
+                {{item.name}}
+                <br>
+                {{item.nation}}
+                <br>
+                <input value="{{item.name}}" placeholder="name"/>
+                <br>
+                <input [(ngModel)]="item.name" placeholder="name">
+            </p>
         </div>
         `
+        /**
+         * [(ngModel)]="변수명" 으로 할 경우 two-way binding 됨
+         * 
+         * 이 경우 뷰단 인풋값을 바꾸면 그 즉시 클래스의 값도 변경
+         */
 })
 
 export class AppComponent {
-
+    name = 'u4bi';
+    item : Item = {
+        id : 1,
+        name : '몬스터볼',
+        nation : 'USA'
+    };
+    /**
+     * 클래스 안에 name과 item 변수를 선언해줌.
+     */
 }
 /**
  * export class AppComponent{}는
@@ -31,3 +54,13 @@ export class AppComponent {
  * AppComponent 클래스를 선언하고.
  * export 해서 다른 곳에서 또 사용할 수 있다는걸 의미함.
  */
+
+export class Item {
+    id : number;
+    name : string;
+    nation : string;
+    /**
+     * TypeScript에서는 이렇게 "변수명: 타입명;" 과 같이 선언함
+     * TypeScript에서는 JavaScript에서 관리하지 않는 Type을 관리함
+     */
+}

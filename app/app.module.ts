@@ -1,12 +1,22 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { FormsModule }   from '@angular/forms';
+/**
+ * ngModel을 사용 위한 FormsModule 모듈을 임포트
+ */
+
 import { AppComponent }  from './app.component';
 /**
  * app.component내의 AppComponent를 임포트함.
 */
 @NgModule({
+  /**
+   * NgModule단에 FormsModule을 추가함 
+   */
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   declarations: [
     AppComponent
