@@ -15,14 +15,61 @@ import { Component } from '@angular/core';
     selector: 'my-app',
     template: `
         <div>
+            <div *ngIf="putItem">
+                <h2>장착 아이템 : {{putItem.id}} {{putItem.name}} {{putItem.nation}}</h2>
+            </div>
             <h2>내 아이템 목록</h2>
             <ul class="itemArray">
-                <li *ngFor="let item of itemArray">
-                    <p>{{item.id}} {{item.name}} {{item.nation}}</p>
+                <li *ngFor="let item of itemArray" (click)="onSelect(item)">
+                    <p [class.choice]="item === putItem" >{{item.id}} {{item.name}} {{item.nation}}</p>
                 </li>
             </ul>
         </div>
-        `
+        `,
+        styles:[`
+            .choice {
+              color: red;
+            }
+        `]
+        /**
+         * styles.css 와 동일 
+         */
+
+        /**
+         * 포문
+         * *ngFor="let 사용할 변수 of 클래스내 배열변수"
+         * 
+         * 이벤트 연결
+         * (이벤트명)="함수명(변수)"
+         * 
+         * 여기서 () 괄호는 Event Binding이라함.
+         */
+
+        /**
+         * putItem가 최초 undefined 선언됨.
+         * 
+         * 이를 해결하기 위한 방법은 2가지
+         * 1. 하나는 선언과 동시에 값을 하나 지정
+         * 2. 다른 하나는 *ngIf를 사용
+         * 
+         *      ngIf="putItem"란 속성추가
+         *      만약 putItem가 있으면
+         *      이 태그를 만들겠다
+         *      
+         *      만약 putItem가 없다? 그러면 <div> 태그가 없어지고
+         *      그로 인해 <div> 태그 하위에 있는 것들도 없음
+         *      
+         *      따라서 putItem.name을 연산할 일이 없기때문에 오류가 안남
+         * 
+         *      *ngFor과 *ngIf는 구조적 프로그래밍에 사용되는 것들로
+         *      structural directive라고 함
+         *      
+         *      Item에 style 추가
+         *      [class.choice]="item === putItem"
+         * 
+         *      문법은 [class.클래스명]="조건문" 임     
+         *      조건에 맞을 경우 스타일시트 클래스가 추가되는 형식
+         */
 })
 
 export class AppComponent {
@@ -30,6 +77,11 @@ export class AppComponent {
     /**
      *  변수 하나 선언후 위 배열 assign함
      */
+    putItem: Item;
+    onSelect(item: Item): void {
+        this.putItem = item;
+    }
+    
 }
 /**
  * export class AppComponent{}는
