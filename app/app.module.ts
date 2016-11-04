@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app.routes';
 
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home.component';
+import { HomeService } from './home.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { HomeComponent } from './home.component';
     AppComponent,
     HomeComponent
   ],
-  providers: [ ],
+  providers: [HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
