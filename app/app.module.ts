@@ -3,9 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app.routes';
 
 import { AppComponent }  from './app.component';
-import { AboutComponent, AboutHomeComponent, AboutItemComponent } from './about.component';
 import { HomeComponent } from './home.component';
-import { BoardComponent } from './board.component';
 
 @NgModule({
   imports: [
@@ -14,9 +12,7 @@ import { BoardComponent } from './board.component';
   ],
   declarations: [
     AppComponent,
-    AboutComponent,AboutHomeComponent,AboutItemComponent,
-    HomeComponent,
-    BoardComponent
+    HomeComponent
   ],
   providers: [ ],
   bootstrap: [AppComponent]
