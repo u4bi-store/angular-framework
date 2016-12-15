@@ -9,7 +9,7 @@
   },
   "licenses": [
     {
-      "type": "MIT",
+      "type": "mit",
       "url": "https://github.com/angular/angular.io/blob/master/LICENSE"
     }
   ],
