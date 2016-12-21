@@ -1,12 +1,11 @@
-<div class="detail">
-  app-hero-detail
+ <p> app-hero-detail</p>
 
-  <div *ngIf="hero">
-    <p> {{hero.name}}</p>
-    <p><label>ID </label> {{hero.id}}</p>
-    <div>
-      <label>name : </label>
-      <input [(ngModel)]="hero.name" placeholder="name"/>
-    </div>
+<div *ngIf="hero">
+  <p> {{hero.name}}</p>
+  <p><label>ID </label> {{hero.id}}</p>
+  <div>
+    <label>name : </label>
+    <input [(ngModel)]="hero.name" placeholder="name"/>
   </div>
+  <button (click)="goBack()">Back</button>
 </div>

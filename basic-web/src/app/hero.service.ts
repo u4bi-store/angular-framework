@@ -8,6 +8,10 @@ export class HeroService {
   getHeroes(): Hero[] {
     return HEROES;
   }
+  
+  getHero(id: number): Hero{
+    return HEROES.find(hero => hero.id === id);
+  }
 
   constructor() { }
 
