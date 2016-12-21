@@ -2,12 +2,12 @@
 
 <ul class="heroes">
   <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
+    <span class="badge">{{hero.id}} {{hero.name}}</span>
   </li>
 </ul>
 
 <div *ngIf="selectedHero">
-  <p>{{selectedHero.name}}</p>
+  <span>{{selectedHero.name}}</span>
   <div> <label> ID </label> {{selectedHero.id}} </div>
   
   <div>

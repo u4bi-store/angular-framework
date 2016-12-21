@@ -1,0 +1,13 @@
+p{
+  color:green;
+}
+
+.heroes li:hover{
+  color:red;
+}
+
+.heroes .badge{
+  color:#fff;
+  background-color:blue;
+  border-radius: 2px 0 0 2px;
+}
