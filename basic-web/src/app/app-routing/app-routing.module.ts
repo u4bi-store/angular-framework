@@ -1,10 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {{ RouterModule, Routes }} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { HeroesComponent } from '../heroes/heroes.component';
+import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -13,13 +11,4 @@ const routes: Routes = [
   {path: 'heroes', component: HeroesComponent}
 ];
 
-@NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule]
-  declarations: []
-})
-
-export class AppRoutingModule { }
+export const AppRoutingModule = RouterModule.forRoot(routes);
