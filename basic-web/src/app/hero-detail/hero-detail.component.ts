@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -17,12 +18,14 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   constructor(
     private heroService: HeroService,
     private route: ActivatedRoute,
-    private router: Router){
+    private router: Router,
+    private location: Location){
   }
 
   goBack(): void{
-    let link = ['/heroes'];
-    this.router.navigate(link);
+    //let link = ['/heroes'];
+    //this.router.navigate(link);
+    this.location.back();
   }
 
   ngOnInit(): void {
