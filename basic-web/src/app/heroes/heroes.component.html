@@ -1,5 +1,12 @@
 <p>[app-heroes]</p>
 <p>{{title}}</p>
+
+<div>
+  <label>name:</label> <input #heroName />
+
+  <button (click)="add(heroName.value); heroName.value='' ">Add</button>
+</div>
+
 <ul class="heroes">
   <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero"
   (click)="onSelect(hero)">
