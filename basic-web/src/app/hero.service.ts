@@ -7,55 +7,38 @@ import { Hero } from './hero';
 
 @Injectable()
 export class HeroService {
- 
-  private baseUrl: string = 'http://swapi.co/api';
+  
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private heroesUrl = 'api/heroes';
+
   constructor(private http: Http) { }
   
   getHeroes(): Promise<Hero[]> {
     return this.http
-      .get(`${this.baseUrl}/people`, {headers: this.getHeaders()})
+      .get(this.heroesUrl)
       .toPromise()
-      .then(mapHeroes)
+      .then(response => response.json().data as Hero[])
       .catch(handleError);
   }
   
   getHero(id: number): Promise<Hero>{
+    const url = `${this.heroesUrl}/${id}`;
     return this.http
-      .get(`${this.baseUrl}/people/${id}`, {headers: this.getHeaders()})
+      .get(url)
       .toPromise()
-      .then(mapHero)
+      .then(response => response.json().data as Hero)
       .catch(handleError);
   }
- 
-  private getHeaders(){
-    let headers = new Headers();
-    headers.append('Accept', 'application/json');
-    return headers;
+  
+  update(hero: Hero): Promise<Hero>{
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.http
+      .put(url, JSON.stringify(hero), {headers: this.headers})
+      .toPromise()
+      .then(()=>hero)
+      .catch(handleError);
   }
- 
-}
 
-function mapHeroes(response:Response): Hero[]{
- return response.json().results.map(toHero)
-}
-
-function mapHero(response:Response): Hero{
-  return toHero(response.json());
-}
-
-function toHero(r:any): Hero{
-  let hero = <Hero>({
-    id: extractId(r),
-    url: r.url,
-    name: r.name,
-  });
-  console.log('hero :', hero);
-  return hero;
-}
-
-function extractId(heroData:any){
-  let extractedId = heroData.url.replace('http://swapi.co/api/people/','').replace('/','');
- return parseInt(extractedId);
 }
 
 function handleError (error: any) {

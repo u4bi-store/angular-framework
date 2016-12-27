@@ -27,6 +27,11 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
     //this.router.navigate(link);
     this.location.back();
   }
+  
+  save(): void{
+    this.heroService.update(this.hero)
+      .then(() => this.goBack());
+  }
 
   ngOnInit(): void {
    this.sub = this.route.params.subscribe(params => {
