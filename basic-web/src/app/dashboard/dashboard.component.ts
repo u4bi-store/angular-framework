@@ -9,19 +9,12 @@ import{ HeroService } from '../hero.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
-  errorMessage: string = '';
-  isLoading: boolean = true;
+  heroes:Hero[];
 
   constructor(private heroService: HeroService) { }
 
   ngOnInit() : void {
-    this.heroService.getHeroes()
-      .subscribe(
-        p => this.heroes = p,
-        e => this.errorMessage = e,
-        () => this.isLoading = false
-      );
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
 
 }

@@ -10,9 +10,7 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[] = [];
-  errorMessage: string = '';
-  isLoading : boolean = true;
+  heroes: Hero[];
 
   selectedHero : Hero;
 
@@ -21,12 +19,7 @@ export class HeroesComponent implements OnInit {
     private heroService: HeroService) { }
   
   ngOnInit(): void{
-    this.heroService.getHeroes()
-      .subscribe(
-        p => this.heroes = p,
-        e => this.errorMessage = e,
-        () => this.isLoading = false
-      );
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
   onSelect(hero: Hero): void{
     this.selectedHero = hero;

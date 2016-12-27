@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+
+import 'rxjs/add/operator/toPromise';
 
 import { Hero } from './hero';
 
@@ -10,19 +11,20 @@ export class HeroService {
   private baseUrl: string = 'http://swapi.co/api';
   constructor(private http: Http) { }
   
-  getHeroes(): Observable<Hero[]> {
-    let heroes$ = this.http
+  getHeroes(): Promise<Hero[]> {
+    return this.http
       .get(`${this.baseUrl}/people`, {headers: this.getHeaders()})
-      .map(mapHeroes);
-      return heroes$;
+      .toPromise()
+      .then(mapHeroes)
+      .catch(handleError);
   }
   
-  getHero(id: number): Observable<Hero>{
-    let hero$ = this.http
+  getHero(id: number): Promise<Hero>{
+    return this.http
       .get(`${this.baseUrl}/people/${id}`, {headers: this.getHeaders()})
-      .map(mapHero)
+      .toPromise()
+      .then(mapHero)
       .catch(handleError);
-      return hero$;
   }
  
   private getHeaders(){
@@ -59,5 +61,5 @@ function extractId(heroData:any){
 function handleError (error: any) {
   let errorMsg = error.message || `error handle msg`
   console.error(errorMsg);
-  return Observable.throw(errorMsg);
+  return Promise.reject(errorMsg);
 }
