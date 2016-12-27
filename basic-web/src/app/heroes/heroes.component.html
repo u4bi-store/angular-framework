@@ -1,11 +1,14 @@
 <p>[app-heroes]</p>
 <p>{{title}}</p>
 <ul class="heroes">
+  <span *ngIf="isLoading && !errorMessage">loading data </span>
   <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero"
   (click)="onSelect(hero)">
     {{hero.id}} <span class="badge">{{hero.name}}</span>
   </li>
 </ul>
+<span *ngIf="errorMessage">{{errorMessage}}</span>
+
 <div *ngIf="selectedHero">
  <p>{{selectedHero.name | uppercase }}</p>
  <button (click)="gotoDetail()">view detail</button>

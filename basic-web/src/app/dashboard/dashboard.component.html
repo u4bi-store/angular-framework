@@ -1,6 +1,8 @@
 <p>[app-dashboard]</p>
 <div>
+  <span *ngIf="isLoading && !errorMessage">loading data</span>
   <a *ngFor="let hero of heroes" [routerLink]="['/detail', hero.id]">
-    <span>{{hero.name}}</span>
+    <p>{{hero.name}}</p>
   </a>
+  <span *ngIf="errorMessage">{{errorMessage}}</span>
 </div>

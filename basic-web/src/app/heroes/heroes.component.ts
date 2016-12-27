@@ -11,6 +11,9 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
+  errorMessage: string = '';
+  isLoading : boolean = true;
+
   selectedHero : Hero;
 
   constructor(
@@ -18,7 +21,12 @@ export class HeroesComponent implements OnInit {
     private heroService: HeroService) { }
   
   ngOnInit(): void{
-    this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroes()
+      .subscribe(
+        p => this.heroes = p,
+        e => this.errorMessage = e,
+        () => this.isLoading = false
+      );
   }
   onSelect(hero: Hero): void{
     this.selectedHero = hero;
