@@ -8,6 +8,8 @@ import { firebaseConfig } from './../environments/firebase.config';
 
 import { AppComponent } from './app.component';
 
+import { AppAuthService } from './app-auth.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +20,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [],
+  providers: [AppAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
