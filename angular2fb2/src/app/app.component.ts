@@ -27,6 +27,21 @@ export class AppComponent {
         else {
           console.log("로그인을 한 상태");
           this.isLogin = true;
+          console.log(auth);
+          
+          console.log('제공처내 이름    : '+auth.google.displayName);
+          console.log('제공처내 이메일   : '+auth.google.email);
+          console.log('제공처내 아바타   : '+auth.google.photoURL);
+          console.log('제공처 사이트     : '+auth.google.providerId);
+          console.log('제공처내 고유번호  : '+auth.google.uid);
+
+          console.log('고유번호(동일)  : '+auth.uid);
+          
+          console.log('고유번호(동일)  : '+auth.auth.uid);
+          console.log('유저이름  : '+auth.auth.displayName);
+          console.log('이메일  : '+auth.auth.email);
+          console.log('아바타  : '+auth.auth.photoURL);
+          console.log('저장 사이트  : '+auth.auth.providerId);
         }
       }
     );
