@@ -9,12 +9,28 @@ import { AppAuthService } from './app-auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public isLogin: boolean;
+
   title = 'app works!';
 
   items: FirebaseListObservable<any[]>;
 
   constructor(private af : AngularFire, public appAuthService : AppAuthService){
     this.items = af.database.list('/items');
+
+    this.appAuthService.firebase.auth.subscribe(
+      (auth) => {
+        if(auth == null) {
+          console.log("로그인을 하지 않은 상태");
+          this.isLogin = false;
+        }
+        else {
+          console.log("로그인을 한 상태");
+          this.isLogin = true;
+        }
+      }
+    );
+
   }
 
   login() {
