@@ -3,7 +3,7 @@
 
   <ul>
     <li *ngFor="let item of items | async ">
-      {{item.$value}}
+      {{item.$key}} : {{item.$value}}
     </li>
   </ul>
 </h1>
