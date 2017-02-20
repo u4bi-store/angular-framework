@@ -3,16 +3,20 @@
   <form>
     <div>
       <label for="title">타이틀</label>
-      <input type="text" class="form-control" id="title" required>
+      <input type="text" class="form-control" id="title" [(ngModel)]="model.title" name="title" required>
     </div>
     <div>
       <label for="author">저자</label>
-      <input type="text" class="form-control" id="author" required>
+      <input type="text" class="form-control" id="author" [(ngModel)]="model.author" name="author" required>
     </div>
     <div>
       <label for="url">URL</label>
-      <input type="text" class="form-control" id="url" required>
+      <input type="text" class="form-control" id="url" [(ngModel)]="model.url" name="url" required>
     </div>
     <button type="submit" class="btn btn-default">확인</button>
   </form>
+  <div>
+    <h2>모델 : </h2>
+    {{ currentBook }} <!--파써된 형태로 출력 -->
+  </div>
 </div>
