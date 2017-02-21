@@ -1,17 +1,27 @@
 <div class="container">
   <h1>북 폼</h1>
   <form>
-    <div>
+    
+    <div class="form-group">
       <label for="title">타이틀</label>
-      <input type="text" class="form-control" id="title" [(ngModel)]="model.title" name="title" required>
+      <input type="text" class="form-control" id="title" [(ngModel)]="model.title" name="title" required minlength="5" maxlength="30" #title="ngModel">
+      <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger"> <!-- 에러가 있고 값의 변형이나 값을 클릭하고 있을 때-->
+          <!-- 위에 조건이 true고 아래 조건에 해당되면
+               div에 정의된 히든 속성이 비활성화됨. -->
+          <div [hidden]="!title.errors.required">북 제목은 필수로 적어야 함. </div>
+          <div [hidden]="!title.errors.minlength">북 제목은 최소 5자를 넘어야 함. </div>
+          <div [hidden]="!title.errors.maxlength">북 제목은 최대 30자를 넘을 수 없음. </div>
+      </div>
     </div>
-    <div>
+    
+    <div class="form-group">
       <label for="author">저자</label>
-      <input type="text" class="form-control" id="author" [(ngModel)]="model.author" name="author" required>
+      <input type="text" class="form-control" id="author" [(ngModel)]="model.author" name="author" required #author="ngModel">
     </div>
-    <div>
+
+    <div class="form-group">
       <label for="url">URL</label>
-      <input type="text" class="form-control" id="url" [(ngModel)]="model.url" name="url" required>
+      <input type="text" class="form-control" id="url" [(ngModel)]="model.url" name="url" pattern="https?://.+" #url="ngModel">
     </div>
     <button type="submit" class="btn btn-default">확인</button>
   </form>
