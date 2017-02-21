@@ -1,0 +1,18 @@
+/*  CSS classes
+
+    ng-valid is set if the form is valid.
+    ng-invalid is set if the form is invalid.
+    ng-pending is set if the form is pending. 보류
+    ng-pristine is set if the form is pristine. 깨끗
+    ng-dirty is set if the form is dirty. 더러운 변형이있는
+    ng-submitted is set if the form was submitted. 제출되면
+
+*/
+
+.ng-valid[required], .ng-valid.required{ /* 유효한 초록 */
+    border-left : 5px solid #42A948;
+}
+
+.ng-invalid:not(form){ /* 유효하지 않은 빨간 */
+    border-left: 5px solid #A94442;
+}
