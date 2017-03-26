@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { User } from './shared/modules/user';
 
+import 'rxjs/add/operator/map';
+
 @Component({
   selector: 'my-app',
   template: `
@@ -26,13 +28,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.http.get('https://reqres.in/api/users')
-      .subscribe(data => {
-        console.log('API 출력');
-        console.log(data);
-
-        this.users = data.json().data;
-        
-      });
+      .map(res => res.json().data)
+      .subscribe(users => this.users = users);
   }
 
 }
+
+// .find((user, key) => user.first_name === 'george')
