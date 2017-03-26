@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { User } from './shared/modules/user';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'my-app',
@@ -27,9 +28,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
+    // this.http.get('https://reqres.in/api/users')
+    //   .map(res => res.json().data)
+    //   .subscribe(users => this.users = users);
+
+
     this.http.get('https://reqres.in/api/users')
-      .map(res => res.json().data)
-      .subscribe(users => this.users = users);
+      .toPromise()
+      .then(data =>{
+          console.log(data);
+          console.log(data.json().data);
+      });
   }
 
 }
