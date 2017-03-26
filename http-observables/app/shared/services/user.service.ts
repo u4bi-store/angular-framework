@@ -18,8 +18,19 @@ export class UserService {
         return this.http.get(this.userUrl)
             .map(res => res.json().data)
             .catch(err => {
+                let errMessage : string;
 
-                return Observable.throw(err.json().data || 'Server error.');
+                if(err instanceof Response){
+                    let body = err.json() || '';
+                    let error = body.error || JSON.stringify(body);
+                    
+                    errMessage = `${err.status} - ${err.statusText} || ''} ${error}`;
+                }else{
+                    errMessage = err.message ? err.message : err.toString();
+                }
+
+                return Observable.throw(errMessage);
+                // return Observable.throw(err.json().data || 'Server error.');
             });
     }
     // get user
