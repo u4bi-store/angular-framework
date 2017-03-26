@@ -17,28 +17,39 @@ export class UserService {
     getUsers() : Observable<User[]>{
         return this.http.get(this.userUrl)
             .map(res => res.json().data)
-            .catch(err => {
-                let errMessage : string;
-
-                if(err instanceof Response){
-                    let body = err.json() || '';
-                    let error = body.error || JSON.stringify(body);
-                    
-                    errMessage = `${err.status} - ${err.statusText} || ''} ${error}`;
-                }else{
-                    errMessage = err.message ? err.message : err.toString();
-                }
-
-                return Observable.throw(errMessage);
-                // return Observable.throw(err.json().data || 'Server error.');
-            });
+            .catch(this.handleError);
     }
-    // get user
+    /**
+     * 특정 유저의 데이터를 가져온다.
+     */
+    getUser(){
+        return this.http.get('http//example.com')
+        .map(res => res.json())
+        .catch(this.handleError);
+    }
 
     // create user
 
     // update user
 
     // delete user
+
+    /**
+     * 에러 캐칭 핸들러
+     */
+    private handleError(err){
+        let errMessage : string;
+
+        if(err instanceof Response){
+            let body = err.json() || '';
+            let error = body.error || JSON.stringify(body);
+
+            errMessage = `${err.status} - ${err.statusText} || ''} ${error}`;
+        }else{
+            errMessage = err.message ? err.message : err.toString();
+        }
+
+        return Observable.throw(errMessage);
+    }
 
 }
