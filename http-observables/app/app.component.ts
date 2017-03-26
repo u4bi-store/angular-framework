@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+
 import { User } from './shared/modules/user';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'my-app',
@@ -20,22 +22,13 @@ import { User } from './shared/modules/user';
 export class AppComponent implements OnInit {
   users : User[];
 
-  constructor(private http: Http){
+  constructor(private service: UserService){
     
   }
 
   ngOnInit(){
-    // this.http.get('https://reqres.in/api/users')
-    //   .map(res => res.json().data)
-    //   .subscribe(users => this.users = users);
-
-
-    this.http.get('https://reqres.in/api/users')
-      .toPromise()
-      .then(data =>{
-          console.log(data);
-          console.log(data.json().data);
-      });
+    this.service.getUsers()
+      .subscribe(users => this.users = users);
   }
 
 }
