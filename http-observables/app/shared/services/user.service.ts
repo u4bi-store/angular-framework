@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../modules/user';
@@ -16,7 +16,11 @@ export class UserService {
      */
     getUsers() : Observable<User[]>{
         return this.http.get(this.userUrl)
-            .map(res => res.json().data);
+            .map(res => res.json().data)
+            .catch(err => {
+
+                return Observable.throw(err.json().data || 'Server error.');
+            });
     }
     // get user
 
