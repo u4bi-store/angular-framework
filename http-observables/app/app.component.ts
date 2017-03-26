@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { User } from './shared/modules/user';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-
 @Component({
   selector: 'my-app',
   template: `
