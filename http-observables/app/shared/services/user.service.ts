@@ -22,8 +22,8 @@ export class UserService {
     /**
      * 특정 유저의 데이터를 가져온다.
      */
-    getUser(){
-        return this.http.get('http//example.com')
+    getUser(user){
+        return this.http.get('https://reqres.in/api/user/'+user.id)
         .map(res => res.json())
         .catch(this.handleError);
     }
